@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Catálogos para Lojistas | Chumbada Oficial</title>
+  <meta name="description" content="Portal de catálogos da Chumbada Oficial para lojistas. Acesse os catálogos de anzóis, iscas e acessórios." />
+
+  <style>
+    :root {
+      --bg: #080808;
+      --bg-2: #111111;
+      --card: #171717;
+      --card-2: #202020;
+      --orange: #ff6a00;
+      --orange-2: #ff8a24;
+      --white: #ffffff;
+      --muted: #a8a8a8;
+      --line: rgba(255, 255, 255, 0.12);
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--white);
+      background:
+        radial-gradient(circle at top left, rgba(255, 106, 0, 0.22), transparent 34%),
+        radial-gradient(circle at bottom right, rgba(255, 106, 0, 0.11), transparent 30%),
+        linear-gradient(135deg, #050505 0%, #111111 48%, #070707 100%);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+      background-size: 46px 46px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.7), transparent 85%);
+      z-index: 0;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      width: min(1180px, calc(100% - 36px));
+      margin: 0 auto;
+      padding: 34px 0 42px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 22px;
+      padding: 18px 0 42px;
+    }
+
+    .logo-box {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-box img {
+      width: 210px;
+      max-width: 58vw;
+      height: auto;
+      display: block;
+      filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.5));
+    }
+
+    .seller-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border: 1px solid rgba(255, 106, 0, 0.35);
+      border-radius: 999px;
+      background: rgba(255, 106, 0, 0.09);
+      color: #ffd7bc;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .seller-badge span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--orange);
+      box-shadow: 0 0 18px rgba(255, 106, 0, 0.9);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 34px;
+      align-items: center;
+      margin-bottom: 42px;
+    }
+
+    .hero-content {
+      padding: 18px 0;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      margin-bottom: 18px;
+      padding: 8px 12px;
+      border-left: 4px solid var(--orange);
+      background: rgba(255, 255, 255, 0.06);
+      color: #f4f4f4;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 740px;
+      font-size: clamp(38px, 6vw, 76px);
+      line-height: 0.94;
+      letter-spacing: -0.06em;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+
+    h1 strong {
+      color: var(--orange);
+      text-shadow: 0 0 34px rgba(255, 106, 0, 0.28);
+    }
+
+    .hero p {
+      max-width: 650px;
+      color: #c9c9c9;
+      font-size: clamp(16px, 2vw, 20px);
+      line-height: 1.55;
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .primary-link,
+    .secondary-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 20px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease;
+    }
+
+    .primary-link {
+      color: #111111;
+      background: linear-gradient(135deg, var(--orange), var(--orange-2));
+      box-shadow: 0 16px 38px rgba(255, 106, 0, 0.24);
+    }
+
+    .secondary-link {
+      color: var(--white);
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.055);
+    }
+
+    .primary-link:hover,
+    .secondary-link:hover {
+      transform: translateY(-3px);
+    }
+
+    .secondary-link:hover {
+      border-color: rgba(255, 106, 0, 0.6);
+      background: rgba(255, 106, 0, 0.08);
+    }
+
+    .hero-panel {
+      position: relative;
+      min-height: 390px;
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02)),
+        linear-gradient(135deg, #1a1a1a, #0b0b0b);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-panel::before {
+      content: "";
+      position: absolute;
+      inset: -40% -20% auto auto;
+      width: 360px;
+      height: 360px;
+      border-radius: 50%;
+      background: rgba(255, 106, 0, 0.24);
+      filter: blur(10px);
+    }
+
+    .hero-panel::after {
+      content: "CATÁLOGOS";
+      position: absolute;
+      right: -28px;
+      bottom: 26px;
+      color: rgba(255, 255, 255, 0.035);
+      font-size: 78px;
+      font-weight: 950;
+      letter-spacing: -0.06em;
+      transform: rotate(-8deg);
+    }
+
+    .panel-inner {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      padding: 34px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 28px;
+    }
+
+    .panel-number {
+      width: 88px;
+      height: 88px;
+      display: grid;
+      place-items: center;
+      border-radius: 24px;
+      color: #111111;
+      background: var(--orange);
+      font-size: 42px;
+      font-weight: 950;
+      box-shadow: 0 20px 42px rgba(255, 106, 0, 0.26);
+    }
+
+    .panel-text h2 {
+      font-size: clamp(28px, 3vw, 42px);
+      line-height: 1;
+      letter-spacing: -0.045em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .panel-text p {
+      max-width: 410px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .catalog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-bottom: 34px;
+    }
+
+    .catalog-card {
+      position: relative;
+      min-height: 320px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.025)),
+        var(--card);
+      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.22);
+      overflow: hidden;
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .catalog-card:hover {
+      transform: translateY(-7px);
+      border-color: rgba(255, 106, 0, 0.58);
+      box-shadow: 0 28px 64px rgba(0, 0, 0, 0.35);
+    }
+
+    .catalog-card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--orange), transparent);
+    }
+
+    .catalog-card::after {
+      content: attr(data-bg);
+      position: absolute;
+      right: -8px;
+      bottom: -18px;
+      color: rgba(255, 255, 255, 0.035);
+      font-size: 86px;
+      font-weight: 950;
+      letter-spacing: -0.08em;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .card-content {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .icon {
+      width: 58px;
+      height: 58px;
+      display: grid;
+      place-items: center;
+      border-radius: 18px;
+      margin-bottom: 22px;
+      background: rgba(255, 106, 0, 0.11);
+      border: 1px solid rgba(255, 106, 0, 0.28);
+      color: var(--orange);
+    }
+
+    .icon svg {
+      width: 31px;
+      height: 31px;
+      stroke-width: 2;
+    }
+
+    .catalog-card h3 {
+      font-size: 28px;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .catalog-card p {
+      color: #bdbdbd;
+      font-size: 15px;
+      line-height: 1.55;
+      margin-bottom: 24px;
+    }
+
+    .card-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      width: 100%;
+      margin-top: auto;
+      padding: 15px 16px;
+      border-radius: 14px;
+      color: #111111;
+      background: var(--white);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 950;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: background 0.22s ease, transform 0.22s ease;
+    }
+
+    .catalog-card:hover .card-button {
+      background: linear-gradient(135deg, var(--orange), var(--orange-2));
+    }
+
+    .card-button span:last-child {
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    .footer-note {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 18px 20px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.045);
+      color: #c8c8c8;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .footer-note strong {
+      color: var(--white);
+    }
+
+    @media (max-width: 920px) {
+      header {
+        align-items: flex-start;
+        flex-direction: column;
+        padding-bottom: 30px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-panel {
+        min-height: 300px;
+      }
+
+      .catalog-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .page {
+        width: min(100% - 24px, 1180px);
+        padding-top: 18px;
+      }
+
+      .seller-badge {
+        white-space: normal;
+        line-height: 1.35;
+      }
+
+      .hero-actions {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .primary-link,
+      .secondary-link {
+        width: 100%;
+      }
+
+      .hero-panel::after {
+        font-size: 54px;
+      }
+
+      .panel-inner,
+      .catalog-card {
+        padding: 22px;
+      }
+
+      .footer-note {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <a class="logo-box" href="https://chumbadas.com.br/" target="_blank" rel="noopener" aria-label="Acessar site da Chumbada Oficial">
+        <img src="https://cdn.shopify.com/s/files/1/0454/5845/6736/files/CHUMBADA-OFICIAL.png?v=1756760093" alt="Chumbada Oficial" />
+      </a>
+
+      <div class="seller-badge">
+        <span></span>
+        Área de consulta para lojistas
+      </div>
+    </header>
+
+    <section class="hero" aria-labelledby="titulo-principal">
+      <div class="hero-content">
+        <div class="eyebrow">Catálogos Chumbada Oficial</div>
+        <h1 id="titulo-principal">Escolha o catálogo que você quer <strong>consultar</strong></h1>
+        <p>
+          Acesse rapidamente os catálogos de preços da Chumbada Oficial. Selecione abaixo a linha desejada para visualizar produtos, modelos, variações e informações comerciais.
+        </p>
+        <div class="hero-actions">
+          <a class="primary-link" href="#catalogos">Ver catálogos</a>
+          <a class="secondary-link" href="https://chumbadas.com.br/" target="_blank" rel="noopener">Site oficial</a>
+        </div>
+      </div>
+
+      <aside class="hero-panel" aria-label="Resumo dos catálogos disponíveis">
+        <div class="panel-inner">
+          <div class="panel-number">3</div>
+          <div class="panel-text">
+            <h2>Catálogos disponíveis</h2>
+            <p>Anzóis, iscas e acessórios organizados em uma página simples, direta e feita para facilitar a rotina de compra do lojista.</p>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section id="catalogos" class="catalog-grid" aria-label="Lista de catálogos">
+      <article class="catalog-card" data-bg="01">
+        <div class="card-content">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M12 3c3.5 3.2 5.2 6.1 5.2 9.1A5.2 5.2 0 0 1 12 17.3a5.2 5.2 0 0 1-5.2-5.2C6.8 9.1 8.5 6.2 12 3Z" />
+              <path d="M12 17.3v3.7" />
+              <path d="M9.8 21h4.4" />
+            </svg>
+          </div>
+          <h3>Catálogo de Anzóis</h3>
+          <p>Consulte a linha de anzóis Premium, Quimipoint e modelos padrão da Chumbada Oficial.</p>
+          <a class="card-button" href="https://mlxjack.github.io/catalogo-de-preco-anzois/" target="_blank" rel="noopener">
+            <span>Acessar catálogo</span>
+            <span>→</span>
+          </a>
+        </div>
+      </article>
+
+      <article class="catalog-card" data-bg="02">
+        <div class="card-content">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M3 12c2.8-4 6.3-6 10.5-6 3.2 0 5.7 1.4 7.5 4.1-1.8 2.7-4.3 4.1-7.5 4.1C9.3 14.2 5.8 13.5 3 12Z" />
+              <path d="M18.2 9.3 22 7v6l-3.8-2.3" />
+              <path d="M8 11.8h.01" />
+            </svg>
+          </div>
+          <h3>Catálogo de Iscas</h3>
+          <p>Veja os modelos de iscas, medidas, quantidades por embalagem e opções disponíveis para lojistas.</p>
+          <a class="card-button" href="https://mlxjack.github.io/catalogo-de-precos-iscas-chumbada/" target="_blank" rel="noopener">
+            <span>Acessar catálogo</span>
+            <span>→</span>
+          </a>
+        </div>
+      </article>
+
+      <article class="catalog-card" data-bg="03">
+        <div class="card-content">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M4 7h16" />
+              <path d="M7 7v13" />
+              <path d="M17 7v13" />
+              <path d="M6 20h12" />
+              <path d="M9 11h6" />
+              <path d="M10 3h4l1 4H9l1-4Z" />
+            </svg>
+          </div>
+          <h3>Catálogo de Acessórios</h3>
+          <p>Acesse suportes, snaps, organizadores, acessórios de pesca e demais itens da linha Chumbada Oficial.</p>
+          <a class="card-button" href="https://mlxjack.github.io/catalogo-de-precos-acessorios/" target="_blank" rel="noopener">
+            <span>Acessar catálogo</span>
+            <span>→</span>
+          </a>
+        </div>
+      </article>
+    </section>
+
+    <div class="footer-note">
+      <p><strong>Chumbada Oficial</strong> — feito por pescador, para pescador.</p>
+      <p>Escolha uma categoria acima para abrir o catálogo em uma nova aba.</p>
+    </div>
+  </main>
+</body>
+</html>

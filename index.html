@@ -96,6 +96,26 @@
       white-space: nowrap;
     }
 
+    .header-actions {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .selecao-link {
+      display: inline-flex;
+      align-items: center;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: #ff6a00;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
     .seller-badge span {
       width: 8px;
       height: 8px;
@@ -523,6 +543,7 @@
       .ps-go { display: none; }
     }
   </style>
+  <script src="https://selecao.chumbada.com.br/client.js" defer></script>
 </head>
 <body>
   <main class="page">
@@ -531,9 +552,12 @@
         <img src="https://cdn.shopify.com/s/files/1/0454/5845/6736/files/CHUMBADA-OFICIAL.png?v=1756760093" alt="Chumbada Oficial" />
       </a>
 
-      <div class="seller-badge">
-        <span></span>
-        Área de consulta para lojistas
+      <div class="header-actions">
+        <a class="selecao-link" href="#/minha-selecao">Minha Seleção</a>
+        <div class="seller-badge">
+          <span></span>
+          Área de consulta para lojistas
+        </div>
       </div>
     </header>
 

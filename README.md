@@ -16,6 +16,7 @@ O hub equivalente **sem preços** é [`hub-catalogos-sem-preco`](https://github.
 | Acessórios | `precodosacessorios.chumbada.com.br` | `catalogo-acessorios-precos-chumbada` |
 | Chumbadas & Jig Heads | `precodaschumbadas.chumbada.com.br` | `catalogo-de-chumbadas-e-jig-heads-com-preco` |
 | Óculos | `precodosoculos.chumbada.com.br` | `oculos-chumbada-oficial` |
+| Pesqueiro | `precopesqueiro.chumbada.com.br` | `pesqueiro-chumbada-oficial-com-preco` (pasta local `pesqueiro-v2`) |
 
 ## Busca global
 
@@ -28,6 +29,7 @@ Cada resultado aponta para o produto específico:
 
 | Catálogo | Formato do link |
 | --- | --- |
+| Pesqueiro | `<domínio>/produtos/<handle>` |
 | Anzóis, Iscas | `<domínio>/#/product/<handle>` |
 | Acessórios, Chumbadas | `<domínio>/#/produto/<slug>` |
 | Óculos | `<domínio>/#/produto/<sku>` |
